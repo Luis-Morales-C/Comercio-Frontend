@@ -1,6 +1,6 @@
 export class LoginClienteDTO {
     constructor(
-        email:string="",
-        contrasena:string=""
+        public email:string="",
+        public contrasena:string=""
     ){}
 }

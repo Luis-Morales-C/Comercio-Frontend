@@ -3,10 +3,12 @@
     <label>Nombre: </label>
     <input type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" required="" />
     </div>
+
     <div>
     <label>Foto: </label>
     <input type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
     </div>
+    
     <div>
     <label>Ciudad: </label>
     <select name="ciudadResidencia" required [(ngModel)]="registroClienteDTO.ciudadResidencia" >
