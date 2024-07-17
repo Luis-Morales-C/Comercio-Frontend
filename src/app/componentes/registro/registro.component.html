@@ -1,0 +1,34 @@
+<form #f="ngForm" (ngSubmit)="registrar()">
+    <div>
+    <label>Nombre: </label>
+    <input type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" required="" />
+    </div>
+    <div>
+    <label>Foto: </label>
+    <input type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
+    </div>
+    <div>
+    <label>Ciudad: </label>
+    <select name="ciudadResidencia" required [(ngModel)]="registroClienteDTO.ciudadResidencia" >
+    <option value="" selected >Seleccione una ciudad</option>
+    @for (item of ciudades; track $index) { <option [value]="item" >{{item}}</option> }
+    </select>
+    </div>
+    <div>
+    <label>Username: </label>
+    <input type="text" name="nickname" [(ngModel)]="registroClienteDTO.nickname" required />
+    </div>
+    <div>
+    <label>Correo electrónico: </label>
+    <input type="email" name="email" [(ngModel)]="registroClienteDTO.email" required/>
+    </div>
+    <div>
+    <label>Contraseña: </label>
+    <input type="password" name="password" [(ngModel)]="registroClienteDTO.password" required />
+    </div>
+    <div>
+    <label>Confirme Contraseña: </label>
+    <input type="password" name="password" [(ngModel)]="registroClienteDTO.confirmaPassword" required />
+    </div>
+    <button type="submit" [disabled]="f.invalid || !sonIguales()" >Registrarse</button>
+</form>
