@@ -1,36 +1,60 @@
 <form #f="ngForm" (ngSubmit)="registrar()">
-    <div>
-    <label>Nombre: </label>
-    <input type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" required="" />
-    </div>
-
-    <div>
-    <label>Foto: </label>
-    <input type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Nombre: </label>
+        <div class="col-sm-10">
+            <input #nombre="ngModel" class="form-control" [ngClass]="nombre.invalid && nombre.dirty ? 'is-invalid' : ''" 
+                type="text" name="nombre" [(ngModel)]="registroClienteDTO.nombre" required />
+        </div>
     </div>
     
-    <div>
-    <label>Ciudad: </label>
-    <select name="ciudadResidencia" required [(ngModel)]="registroClienteDTO.ciudadResidencia" >
-    <option value="" selected >Seleccione una ciudad</option>
-    @for (item of ciudades; track $index) { <option [value]="item" >{{item}}</option> }
-    </select>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Foto: </label>
+        <div class="col-sm-10">
+            <input class="form-control" type="file" name="fotoPerfil" (change)="onFileChange($event)" required />
+        </div>
     </div>
-    <div>
-    <label>Username: </label>
-    <input type="text" name="nickname" [(ngModel)]="registroClienteDTO.nickname" required />
+
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Ciudad: </label>
+        <div class="col-sm-10">
+            <select class="form-select" name="ciudadResidencia" required [(ngModel)]="registroClienteDTO.ciudadResidencia">
+                <option value="" selected>Seleccione una ciudad</option>
+                <option *ngFor="let item of ciudades; let i = index" [value]="item">{{ item }}</option>
+            </select>
+        </div>
     </div>
-    <div>
-    <label>Correo electrónico: </label>
-    <input type="email" name="email" [(ngModel)]="registroClienteDTO.email" required/>
+    
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Username: </label>
+        <div class="col-sm-10">
+            <input #nickname="ngModel" class="form-control" [ngClass]="nickname.invalid && nickname.dirty ? 'is-invalid' : ''" 
+                type="text" name="nickname" [(ngModel)]="registroClienteDTO.nickname" required />
+        </div>
     </div>
-    <div>
-    <label>Contraseña: </label>
-    <input type="password" name="password" [(ngModel)]="registroClienteDTO.password" required />
+
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Correo electrónico: </label>
+        <div class="col-sm-10">
+            <input #email="ngModel" class="form-control" [ngClass]="email.invalid && email.dirty ? 'is-invalid' : ''" 
+                type="email" name="email" [(ngModel)]="registroClienteDTO.email" required />
+        </div>
     </div>
-    <div>
-    <label>Confirme Contraseña: </label>
-    <input type="password" name="password" [(ngModel)]="registroClienteDTO.confirmaPassword" required />
+
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Contraseña: </label>
+        <div class="col-sm-10">
+            <input #password="ngModel" class="form-control" [ngClass]="password.invalid && password.dirty ? 'is-invalid' : ''" 
+                type="password" name="password" [(ngModel)]="registroClienteDTO.password" required />
+        </div>
     </div>
-    <button type="submit" [disabled]="f.invalid || !sonIguales()" >Registrarse</button>
+
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Confirme Contraseña: </label>
+        <div class="col-sm-10">
+            <input #confirmaPassword="ngModel" class="form-control" [ngClass]="confirmaPassword.invalid && confirmaPassword.dirty ? 'is-invalid' : ''" 
+                type="password" name="confirmaPassword" [(ngModel)]="registroClienteDTO.confirmaPassword" required />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid || !sonIguales()">Registrarse</button>
 </form>
